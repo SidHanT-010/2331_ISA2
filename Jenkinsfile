@@ -1,6 +1,11 @@
 pipeline {
     agent any // Use any available agent
      stages {
+           stage('Clone Repository') {
+            steps {
+                git 'https://github.com/<YourUsername>/<RollNo-ISA2>.git'
+            }
+        }
     
 
         stage('Build Docker Image') {
