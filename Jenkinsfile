@@ -1,23 +1,33 @@
 pipeline {
-    agent any // Use any available agent
+    agent any 
 
     stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/<YourUsername>/<RollNo-ISA2>.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image from the Dockerfile in the current directory
-                    bat "docker build -t sidhant10/2331_isa2 ."
+                    sh 'docker build -t <roll_no> .'
                 }
             }
         }
-        stage('Build and Run Docker Container') {
+
+        stage('Cleanup Existing Container') {
             steps {
                 script {
-                    // Remove any existing container with the same name to avoid conflicts
-                    bat "docker rm -f my-app-container || exit 0"
+                    sh 'docker rm -f <roll_no> || true'
+                }
+            }
+        }
 
-                    // Run the Docker container in detached mode
-                    bat "docker run -d --name my-app-container sidhant10/2331_isa2 "
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh 'docker run -d --name <roll_no> -p 5000:5000 <roll_no>'
                 }
             }
         }
