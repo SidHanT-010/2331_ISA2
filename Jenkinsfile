@@ -16,7 +16,7 @@ pipeline {
                     // Remove any existing container with the same name to avoid conflicts
                     bat "docker rm -f my-app-container || exit 0"
 
-                    // Run the Docker container in detached mode
+                    // Run the Docker container in daemon mode
                     bat "docker run -d --name my-app-container sidhant10/2331_isa2"
                 }
             }
