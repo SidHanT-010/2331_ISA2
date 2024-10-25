@@ -16,18 +16,14 @@ pipeline {
             }
         }
 
-        stage('Cleanup Existing Container') {
+        stage('Build and Run Docker Container') {
             steps {
                 script {
-                    sh 'docker rm -f sidhant10/2331_isa2 || true'
-                }
-            }
-        }
+                    
+                    bat "docker rm -f my-app-container || exit 0"
 
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    sh 'docker run -d --sidhant sidhant10/2331_isa2 -p 5000:5000 sidhant10/2331_isa2'
+                    
+                    bat "docker run -d --name my-app-container sidhant10/2331_isa2"
                 }
             }
         }
