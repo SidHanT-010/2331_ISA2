@@ -27,7 +27,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d --name sidhant10/2331_isa2 -p 5000:5000 sidhant10/2331_isa2'
+                    sh 'docker run -d --sidhant sidhant10/2331_isa2 -p 5000:5000 sidhant10/2331_isa2'
                 }
             }
         }
